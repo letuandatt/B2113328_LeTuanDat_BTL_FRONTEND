@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-box">
-      <h1>Đăng nhập Độc giả</h1>
+      <h1>Đăng nhập Nhân viên</h1>
       <form @submit.prevent="handleLogin">
         <div class="form-group">
           <label>Email</label>
