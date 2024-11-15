@@ -15,8 +15,36 @@ export default {
       <router-view />
     </div>
   </div>
+  <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Thư viện trường ABC. All Rights Reserved.</p>
+            <p>Contact us: library@abc.edu.vn | Phone: (123) 456-7890</p>
+        </div>
+    </footer>
 </template>
 
 <style scoped>
-/* Thêm các style tùy chỉnh nếu cần */
+.footer {
+    background-color: #3b5998;
+    color: white;
+    text-align: center;
+    padding: 37.5px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 1.2rem;
+}
+
+.footer a {
+    color: #f0f4f8;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
 </style>
