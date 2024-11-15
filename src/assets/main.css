@@ -33,3 +33,29 @@ a,
     padding: 0 2rem;
   }
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  /* Prevents unwanted scroll that may push elements */
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Ensures #app uses full viewport height */
+  margin: 0 auto;
+}
+
+.container {
+  flex-grow: 1;
+  /* Ensures content area grows to fill space, keeps footer at bottom */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,15 +1,22 @@
 <script>
+import AppHeader from './components/AppHeader.vue'
+
 export default {
+  components: {
+    AppHeader
+  }
 }
 </script>
 
 <template>
-  <h1>Hello, Vue.js!</h1>
+  <div id="app" class="bg-gray-100 min-h-screen">
+    <AppHeader />
+    <div class="container mx-auto p-6">
+      <router-view />
+    </div>
+  </div>
 </template>
 
-<style>
-  .page {
-    max-width: 400px;
-    margin: auto;
-  }
+<style scoped>
+/* Thêm các style tùy chỉnh nếu cần */
 </style>
