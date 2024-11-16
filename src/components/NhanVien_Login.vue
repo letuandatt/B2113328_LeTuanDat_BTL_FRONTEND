@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import AuthService from "@/services/Auth.service";
 
 export default {
   data() {
@@ -33,11 +33,11 @@ export default {
     async handleLogin() {
       try {
         this.error = null; // Xóa thông báo lỗi cũ
-        const response = await axios.post("http://localhost:3000/api/auth/login", {
+        const response = await AuthService.login({
           email: this.email,
           matkhau: this.matkhau,
         });
-        const { token } = response.data;
+        const { token } = response;
         localStorage.setItem("token", token); // Lưu token vào localStorage
         this.$router.push("/"); // Chuyển hướng về trang chính sau khi đăng nhập thành công
       } catch (err) {

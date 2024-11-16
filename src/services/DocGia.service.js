@@ -1,4 +1,4 @@
-import { createApiClient} from "./api.service";
+import createApiClient from "./api.service";
 
 class DocGiaService {
     constructor(baseURL='./api/docgia'){

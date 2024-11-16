@@ -18,7 +18,12 @@ const routes = [
         path: '/login/nhanvien',
         name: 'nhanvien_login',
         component: NhanVien_Login,
-    }
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'notfound',
+        component: () => import("@/views/NotFound.vue"),
+    },
 ];
 
 const router = createRouter({

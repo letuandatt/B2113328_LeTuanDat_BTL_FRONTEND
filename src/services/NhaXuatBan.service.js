@@ -1,4 +1,4 @@
-import { createApiClient } from "@/services/api.service";
+import createApiClient from "@/services/api.service";
 
 class NhaXuatBanService {
     constructor(baseURL="./api/nhaxuatban") {
