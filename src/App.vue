@@ -32,6 +32,7 @@ export default {
     position: relative;
     width: 100%;
     bottom: 0;
+    top: 50%;
 }
 
 .footer p {

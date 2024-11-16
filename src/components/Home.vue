@@ -1,5 +1,6 @@
 <template>
-    <div class="home-container">
+    <div id="app" class="app">
+      <div class="home-container">
         <div class="welcome-box">
             <h1>Welcome to Book Management System</h1>
             <hr style="margin-left: 70px; margin-right: 70px;">
@@ -14,18 +15,25 @@
                 </router-link>
             </div>
         </div>
+      </div>
     </div>
 </template>
 
 <style scoped>
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 69vh;
+}
 .home-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(80vh - 80px); /* Chiều cao toàn màn hình trừ đi chiều cao navbar */
   background-color: #f0f4f8;
-  padding: 0 20px; 
+  padding: 20px; 
   box-sizing: border-box;
+  flex: 1;
 }
 
 .welcome-box {
