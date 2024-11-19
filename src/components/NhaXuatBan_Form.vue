@@ -1,7 +1,7 @@
 <template>
     <div class="home-container">
-        <div class="form-container">
-            <h2>Tạo Nhà Xuất Bản</h2>
+      <div class="form-container">
+          <h2>{{ publisherLocal && publisherLocal._id ? `Hiệu chỉnh` : "Thêm Nhà Xuất Bản" }}</h2>
             <form @submit.prevent="submitPublisher">
                 <div class="form-group">
                     <label for="ten">Tên Nhà Xuất Bản:</label>
@@ -67,7 +67,7 @@ export default {
     },
     methods: {
         submitPublisher() {
-            this.$emit('submit:publisher', this.publisherLocal)
+            this.$emit('submit:publisher', this.publisherLocal);
         },
         deletePublisher() {
             this.$emit('delete:publisher', this.publisherLocal._id)
@@ -77,7 +77,7 @@ export default {
             if (!reply) {
                 return false
             } else {
-                this.$router.push({ name: 'dashboard' })
+                this.$router.push({ name: 'nhaxuatbanview' })
             }
         }
     }
@@ -89,13 +89,12 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(80vh - 80px); /* Chiều cao toàn màn hình trừ đi chiều cao navbar */
+    height: calc(73.1vh - 80px); /* Chiều cao toàn màn hình trừ đi chiều cao navbar */
     background-color: #f0f4f8;
     padding: 30px; 
     box-sizing: border-box;
     flex: 1;
-    width: 100%;
-    margin: 0 10px;
+    margin-bottom: 50px;
 }
 
 .form-container {
@@ -106,6 +105,7 @@ export default {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 h2 {
@@ -140,7 +140,9 @@ input[type="text"] {
 
 .button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px; /* Khoảng cách giữa các nút */
+  margin-top: 20px;
 }
 
 button {
@@ -150,6 +152,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  min-width: 100px; /* Đặt chiều rộng tối thiểu cho các nút để chúng đều nhau */
 }
 
 button:focus {
@@ -186,11 +189,12 @@ button:focus {
 @media (max-width: 768px) {
   .button-group {
     flex-direction: column;
+    align-items: center;
     gap: 10px;
   }
 
   button {
-    width: 100%;
+    width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng màn hình trên thiết bị nhỏ */
   }
 }
 </style>

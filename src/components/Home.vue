@@ -23,13 +23,13 @@
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 69vh;
+  min-height: 89vh;
 }
 .home-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(80vh - 80px); /* Chiều cao toàn màn hình trừ đi chiều cao navbar */
+  height: calc(100vh - 80px); /* Chiều cao toàn màn hình trừ đi chiều cao navbar */
   background-color: #f0f4f8;
   padding: 20px; 
   box-sizing: border-box;

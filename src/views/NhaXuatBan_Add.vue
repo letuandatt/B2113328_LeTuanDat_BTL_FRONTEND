@@ -29,7 +29,7 @@ export default {
             try {
                 await NhaXuatBanService.createNXB(data);
                 alert("Tạo nhà xuất bản thành công");
-                this.$router.push({ name: "dashboard" });
+                this.$router.push({ name: "nhaxuatbanview" });
             } catch (error) {
                 console.log(error);
             };
@@ -42,3 +42,7 @@ export default {
 }
 
 </script>
+
+<style scoped>
+
+</style>

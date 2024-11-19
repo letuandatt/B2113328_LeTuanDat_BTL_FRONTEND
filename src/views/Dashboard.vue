@@ -3,14 +3,14 @@
       <div class="home-container">
         <div class="features">
             <h1>CHỌN ĐỐI TƯỢNG MUỐN THỰC HIỆN</h1>
-            <hr style="margin-left: 100px; margin-right: 100px;">
+            <hr style="margin-left: 200px; margin-right: 200px;">
             <br>
             <div class="role-selection">
                 <router-link :to="{ name: '' }">
                     <button class="role-btn">Theo dõi mượn sách</button>
                 </router-link>
 
-                <router-link :to="{ name: 'themnhaxuatban' }">
+                <router-link :to="{ name: 'nhaxuatbanview' }">
                     <button class="role-btn publisher">Nhà xuất bản</button>
                 </router-link>
 
@@ -76,6 +76,7 @@
     width: 100%;
     max-width: 400px; /* Giới hạn kích thước của container nút */
     margin: 0 auto; /* Đảm bảo nó nằm chính giữa khung */
+    margin-top: 5px;
 }
 
 .role-btn {

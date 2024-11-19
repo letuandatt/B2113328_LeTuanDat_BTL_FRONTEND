@@ -60,7 +60,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(80vh - 80px);
+  height: 89vh;
   background-color: #f0f4f8;
 }
 

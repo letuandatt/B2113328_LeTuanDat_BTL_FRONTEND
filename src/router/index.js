@@ -25,9 +25,20 @@ const routes = [
         component: () => import("@/views/Dashboard.vue"),
     },
     {
-        path: '/dashboard/themnhaxuatban',
+        path: '/dashboard/nhaxuatbanview',
+        name: 'nhaxuatbanview',
+        component: () => import("@/views/NhaXuatBanView.vue"),
+    },
+    {
+        path: '/dashboard/nhaxuatbanview/themnhaxuatban',
         name: 'themnhaxuatban',
         component: () => import("@/views/NhaXuatBan_Add.vue"),
+        props: true,
+    },
+    {
+        path: '/dashboard/nhaxuatbanview/hieuchinhnhaxuatban/:id',
+        name: 'hieuchinhnhaxuatban',
+        component: () => import("@/views/NhaXuatBanEdit.vue"),
         props: true,
     },
     {
