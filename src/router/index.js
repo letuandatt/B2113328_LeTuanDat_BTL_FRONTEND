@@ -20,6 +20,17 @@ const routes = [
         component: NhanVien_Login,
     },
     {
+        path: '/dashboard',
+        name: "dashboard",
+        component: () => import("@/views/Dashboard.vue"),
+    },
+    {
+        path: '/dashboard/themnhaxuatban',
+        name: 'themnhaxuatban',
+        component: () => import("@/views/NhaXuatBan_Add.vue"),
+        props: true,
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),

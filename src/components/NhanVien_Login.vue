@@ -26,6 +26,7 @@ export default {
     return {
       email: "",
       matkhau: "",
+      role: 'nhanvien',
       error: null,
     };
   },
@@ -36,10 +37,11 @@ export default {
         const response = await AuthService.login({
           email: this.email,
           matkhau: this.matkhau,
+          role: this.role,
         });
         const { token } = response;
         localStorage.setItem("token", token); // Lưu token vào localStorage
-        this.$router.push("/"); // Chuyển hướng về trang chính sau khi đăng nhập thành công
+        this.$router.push("/dashboard"); // Chuyển hướng về trang chính sau khi đăng nhập thành công
       } catch (err) {
         this.error = err.response?.data?.message || "Đăng nhập thất bại!";
       }

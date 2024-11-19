@@ -1,7 +1,7 @@
 import createApiClient from "@/services/api.service";
 
 class NhaXuatBanService {
-    constructor(baseURL="./api/nhaxuatban") {
+    constructor(baseURL="/api/nhaxuatban") {
         this.api = createApiClient(baseURL);
     }
 

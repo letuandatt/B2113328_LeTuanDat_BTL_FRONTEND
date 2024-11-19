@@ -1,7 +1,7 @@
 import createApiClient from "@/services/api.service";
 
 class TheoDoiMuonSachService {
-    constructor(baseURL='./api/theodoimuonsach') {
+    constructor(baseURL='/api/theodoimuonsach') {
         this.api = createApiClient(baseURL);
     }
 

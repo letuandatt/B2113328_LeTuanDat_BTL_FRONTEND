@@ -4,7 +4,7 @@
             <a href="/" class="navbar-brand">
                 <i class="fas fa-book-alt"></i>
                 ỨNG DỤNG QUẢN LÝ THƯ VIỆN
-                <i class="fas fa-address-book" style="margin-left: 10px;"></i>
+                <i class="fas fa-book-reader" style="margin-left: 10px;"></i>
             </a>
         </div>
     </nav>

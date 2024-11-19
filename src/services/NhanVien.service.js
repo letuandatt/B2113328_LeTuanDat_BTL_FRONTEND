@@ -1,7 +1,7 @@
 import createApiClient from "@/services/api.service";
 
 class NhanVienService {
-    constructor(baseURL='./api/nhanvien') {
+    constructor(baseURL='/api/nhanvien') {
         this.api = createApiClient(baseURL);
     }
 

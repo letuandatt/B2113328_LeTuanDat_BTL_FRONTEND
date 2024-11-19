@@ -1,7 +1,7 @@
 import createApiClient from "./api.service";
 
 class DocGiaService {
-    constructor(baseURL='./api/docgia'){
+    constructor(baseURL='/api/docgia'){
         this.api = createApiClient(baseURL);
     }
 

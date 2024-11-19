@@ -14,6 +14,10 @@
         <button type="submit" class="login-btn">Đăng nhập</button>
       </form>
       <p v-if="error" class="error-msg">{{ error }}</p>
+      <hr style="margin-left: 100px; margin-right: 100px;">
+      <i style="font-size: small;">If you haven't had the account yet, sign up 
+        <router-link :to="{ name: '' }">here!</router-link>
+      </i>
     </div>
   </div>
 </template>
@@ -26,6 +30,7 @@ export default {
     return {
       email: "",
       matkhau: "",
+      role: "docgia",
       error: null,
     };
   },
@@ -33,7 +38,11 @@ export default {
     async handleLogin() {
       try {
         this.error = null; // Xóa thông báo lỗi cũ
-        const response = await AuthService.login({ email: this.email, matkhau: this.matkhau });
+        const response = await AuthService.login({ 
+          email: this.email, 
+          matkhau: this.matkhau,
+          role: this.role,
+        });
         const { token } = response;
         localStorage.setItem("token", token); // Lưu token vào localStorage
         this.$router.push("/"); // Chuyển hướng về trang chính sau khi đăng nhập thành công
