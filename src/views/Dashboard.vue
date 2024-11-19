@@ -1,6 +1,7 @@
 <template>
     <div id="app" class="app">
       <div class="home-container">
+        <button class="logout-button" @click=""><i class="fa fa-sign-out-alt"></i> Đăng xuất</button>
         <div class="features">
             <h1>CHỌN ĐỐI TƯỢNG MUỐN THỰC HIỆN</h1>
             <hr style="margin-left: 200px; margin-right: 200px;">
@@ -14,14 +15,19 @@
                     <button class="role-btn publisher">Nhà xuất bản</button>
                 </router-link>
 
-                <router-link :to="{ name: '' }">
+                <router-link :to="{ name: 'sachview' }">
                     <button class="role-btn book">Sách</button>
+                </router-link>
+
+                <router-link :to="{ name: '' }">
+                    <button class="role-btn reader">Độc giả</button>
                 </router-link>
             </div>
         </div>
       </div>
     </div>
 </template>
+
 
 <style scoped>
 .app {
@@ -41,14 +47,37 @@
   flex: 1;
 }
 
+.logout-button {
+  position: absolute; /* Đặt vị trí tuyệt đối */
+  top: 20px; /* Cách trên một khoảng */
+  right: 20px; /* Cách phải một khoảng */
+  background-color: #ff4b5c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logout-button:active {
+  transform: scale(0.95);
+}
+
 .features {
     text-align: center;
     background-color: white;
     padding: 30px;
     border-radius: 13px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Tăng kích thước tối đa để khung rộng hơn */
-    width: 100%; /* Mở rộng khung theo toàn bộ màn hình */
+    max-width: 900px; /* Tăng kích thước tối đa để khung rộng hơn */
+    width: 150%; /* Mở rộng khung theo toàn bộ màn hình */
     margin: 0 10px;
 }
 
@@ -102,6 +131,11 @@
 .role-btn.book {
     background: linear-gradient(90deg, #dc3545, #dc3545);
     font-size: 1.1rem;
+}
+
+.role-btn.reader {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  font-size: 1.1rem;
 }
 
 .role-btn:hover {

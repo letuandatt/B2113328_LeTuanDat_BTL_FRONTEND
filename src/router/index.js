@@ -42,6 +42,23 @@ const routes = [
         props: true,
     },
     {
+        path: '/dashboard/sachview',
+        name: 'sachview',
+        component: () => import("@/views/SachView.vue"),
+    },
+    {
+        path: '/dashboard/sachview/themsach',
+        name: 'themsach',
+        component: () => import("@/views/Sach_Add.vue"),
+        props: true,
+    },
+    {
+        path: '/dashboard/sachview/hieuchinhsach/:id',
+        name: 'hieuchinhsach',
+        component: () => import("@/views/SachEdit.vue"),
+        props: true,
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),

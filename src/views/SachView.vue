@@ -1,112 +1,109 @@
 <template>
-  <div class="dashboard-container">
-      <div class="content">
-        <button class="back-button" @click="goBack">Trở về</button>
-        <!-- Nội dung của từng trang sẽ hiển thị ở đây -->
-        <div class="nha-xuat-ban-list-container">
-          <NhaXuatBanList v-if="filterPublishersCount > 0" :publishers="filteredPublishers" v-model:activeIndex="activeIndex" />
-          <p v-else>Không có nhà xuất bản nào</p>
-        </div>
-
-        <div class="feature-selection button-group">
-            <button class="feature-button refresh" @click="refreshList">
-              <i class="fas fa-redo"></i> Làm mới
-            </button>
-            <button class="feature-button add" @click="goToAddPublisher">
-              <i class="fas fa-add"></i> Thêm mới
-            </button>
-            <div v-if="activePublisher">
-              <NhaXuatBanCard :publisher="activePublisher"/>
-              <router-link :to="{ 
-                  name: 'hieuchinhnhaxuatban', 
-                  params: { id: activePublisher._id } 
-                }">
-                <button class="feature-button edit">
-                  <i class="fas fa-edit"></i> Hiệu chỉnh
-                </button>
-              </router-link>
+    <div class="dashboard-container">
+        <div class="content">
+            <button class="back-button" @click="goBack">Trở về</button>
+            <div class="sach-list-container">
+                <SachList v-if="filteredBooksCount > 0"
+                    :books="filteredBooks"
+                    v-model:activeIndex="activeIndex" />
+                <p v-else>Không có sách nào</p>
             </div>
-            <button class="feature-button removeall" @click="removeAll">
-             <i class="fas fa-trash"></i> Xóa tất cả
-            </button>
+
+            <div class="feature-selection button-group">
+                <button class="feature-button refresh" @click="refreshList">
+                    <i class="fas fa-redo"></i> Làm mới
+                </button>
+                <button class="feature-button add" @click="goToAddBook">
+                    <i class="fas fa-add"></i> Thêm mới
+                </button>
+                <div v-if="activeBook">
+                    <SachCard :book="activeBook" />
+                    <router-link :to="{ 
+                        name: 'hieuchinhsach', 
+                        params: { id: activeBook._id } 
+                    }">
+                    <button class="feature-button edit">
+                    <i class="fas fa-edit"></i> Hiệu chỉnh
+                    </button>
+                </router-link>
+                </div>
+                <button class="feature-button removeall" @click="removeAll">
+                    <i class="fas fa-trash"></i> Xóa tất cả
+                </button>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
 </template>
 
 <script>
-import NhaXuatBanList from '@/components/NhaXuatBanList.vue';
-import NhaXuatBanService from '@/services/NhaXuatBan.service';
-import NhaXuatBanCard from '@/components/NhaXuatBanCard.vue';
+import SachList from '@/components/SachList.vue';
+import SachService from '@/services/Sach.service';
+import SachCard from '@/components/SachCard.vue';
 
 export default {
-  components: {
-    NhaXuatBanList,
-  },
-  data() {
-    return {
-      publishers: [],
-      activeIndex: -1
-    };
-  },
-  watch: {
-
-  },
-  computed: {
-    publisherStrings(){
-      return this.publishers.map((publisher) => {
-        const { ten, diachi } = publisher;
-        return [ten, diachi].join("");
-      });
+    components: {
+        SachList,
     },
-    filteredPublishers() {
-      return this.publishers;
+    data() {
+        return {
+            books: [],
+            activeIndex: -1,
+        };
     },
-    activePublisher() {
-      if (this.activeIndex < 0) return null;
-      return this.filteredPublishers[this.activeIndex];
-    },
-    filterPublishersCount() {
-      return this.filteredPublishers.length;
-    }
-  },
-  methods: {
-    async retrievePublishers() {
-      try {
-        this.publishers = await NhaXuatBanService.getAllNXB();
-        console.log(this.publishers);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    refreshList() {
-      this.retrievePublishers();
-      this.activeIndex = -1;
-    },
-    async removeAll() {
-      try {
-        const publishers = await NhaXuatBanService.getAllNXB();
-        for (const publisher of publishers) {
-          await NhaXuatBanService.deleteNXB(publisher._id);
+    computed: {
+        bookStrings() {
+            return this.books.map((book) => {
+                const { ten, tacgia, dongia, soquyen, namxuatban, nhaxuatban } = book;
+                return [ten, tacgia, dongia, soquyen, namxuatban, nhaxuatban].join("");
+            });
+        },
+        filteredBooks() {
+            return this.books;
+        },
+        activeBook() {
+            if (this.activeIndex < 0) return null;
+            return this.filteredBooks[this.activeIndex];
+        },
+        filteredBooksCount() {
+            return this.filteredBooks.length;
         }
-        alert("Đã xóa toàn bộ nhà xuất bản");
+    },
+    methods: {
+        async retrieveBooks() {
+            try {
+                this.books = await SachService.getAllSach();
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        refreshList() {
+            this.retrieveBooks();
+            this.activeIndex = -1;
+        },
+        async removeAll() {
+            try {
+                const books = await SachService.getAllSach();
+                for(const book of books) {
+                    await SachService.deleteSach(book._id);
+                }
+                alert("Đã xóa toàn bộ sách");
+                this.refreshList();
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        goToAddBook() {
+            this.$router.push({ name: "themsach" });
+        },
+        goBack() {
+            this.$router.push({ name: "dashboard" })
+        }
+    },
+    mounted() {
         this.refreshList();
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    goToAddPublisher() {
-      this.$router.push({ name: "themnhaxuatban" });
-    },
-    goBack() {
-      this.$router.push({ name: "dashboard" });
     }
-  },
-  mounted() {
-    this.refreshList();
-  }
+}
 
-};
 </script>
 
 <style scoped>
@@ -201,7 +198,7 @@ export default {
   color: #7f8c8d;
 }
 
-.nha-xuat-ban-list-container {
+.sach-list-container {
   width: 100%;
   border-collapse: collapse;
 }
