@@ -28,6 +28,10 @@ class TheoDoiMuonSachService {
     async checkSachAvailable(id) {
         return (await this.api.get(`/sachcosan/${id}`)).data;
     }
+
+    async deleteTDMS(id) {
+        return (await this.api.delete(`/${id}`)).data;
+    }
 }
 
 export default new TheoDoiMuonSachService();

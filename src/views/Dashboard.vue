@@ -28,7 +28,6 @@
     </div>
 </template>
 
-
 <style scoped>
 .app {
   display: flex;

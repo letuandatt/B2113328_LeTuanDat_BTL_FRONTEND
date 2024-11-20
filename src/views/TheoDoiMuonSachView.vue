@@ -14,6 +14,22 @@
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
                 <router-link :to="{ 
+                    name: ''
+                }">
+                    <button class="feature-button available">
+                        <i class="fas fa-book"></i> Xem sách có sẵn
+                    </button>
+                </router-link>
+                <router-link :to="{ 
+                    name: ''
+                }">
+                    <button class="feature-button available" @click="removeAll">
+                        <i class="fas fa-book"></i> Xóa tất cả
+                    </button>
+                </router-link>
+            </div>
+            <div class="feature-selection button-group second">
+                <router-link :to="{ 
                     name: 'xeptheodocgia'
                 }">
                     <button class="feature-button reader">
@@ -25,13 +41,6 @@
                 }">
                     <button class="feature-button book">
                         <i class="fas fa-book"></i> Xem theo sách
-                    </button>
-                </router-link>
-                <router-link :to="{ 
-                    name: ''
-                }">
-                    <button class="feature-button available">
-                        <i class="fas fa-book"></i> Xem sách có sẵn
                     </button>
                 </router-link>
             </div>
@@ -86,6 +95,18 @@ export default {
         },
         goBack() {
             this.$router.push({ name: 'dashboard' });
+        },
+        async removeAll() {
+            try {
+                const borrowings = await TheoDoiMuonSachService.getAllTDMS();
+                for (const borrowing of borrowings) {
+                    await TheoDoiMuonSachService.deleteTDMS(borrowing._id);
+                }
+                alert("Đã xóa toàn bộ lượt mượn sách");
+                this.refreshList();
+            } catch (error) {
+                console.log(error);
+            }
         }
     },
     mounted() {
@@ -122,44 +143,6 @@ export default {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.sidebar {
-  width: 270px;
-  background-color: #2c3e50;
-  padding: 20px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo chiều sâu */
-  height: 100vh; /* Sidebar cố định chiếm toàn bộ chiều cao */
-  overflow-y: auto; /* Cho phép cuộn nội dung sidebar nếu quá dài */
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar ul li {
-  margin-bottom: 20px;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 10px;
-  display: block;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.sidebar ul li a:hover {
-  background-color: #34495e; /* Đổi màu nền khi hover */
-}
-
 .content {
   flex-grow: 1;
   padding: 30px;
@@ -169,7 +152,6 @@ export default {
   height: calc(100vh - 80px); /* Chiều cao cố định cho content */
 }
 
-/* Đảm bảo nội dung không bị kéo giãn */
 .content h1, .content p {
   margin: 0;
 }
@@ -215,25 +197,6 @@ export default {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-}
-
-.feature-button{
-    background: linear-gradient(90deg, #fbbc05, #f29900);
-    font-size: 1.1rem;
-}
-
-.feature-button.book{
-    background: linear-gradient(90deg, #dc3545, #dc3545);
-    font-size: 1.1rem;
-}
-
-.feature-button.reader{
-  background: linear-gradient(90deg, #007bff, #0056b3);
-  font-size: 1.1rem;
-}
-
-.feature-button.available {
-    background: linear-gradient(90deg, #28a745, #34d058);
     font-size: 1.1rem;
 }
 
@@ -247,15 +210,42 @@ export default {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.feature-button.reader {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+}
+
+.feature-button.book {
+  background: linear-gradient(90deg, #dc3545, #dc3545);
+}
+
+.feature-button.available {
+  background: linear-gradient(90deg, #28a745, #34d058);
+}
+
+.feature-button.refresh {
+    background: linear-gradient(90deg, #fbbc05, #f29900);
+}
+
+.second {
+    margin-top: 20px;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-  .button-group {
+  .feature-selection {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
 
-  button {
+  .feature-button {
     width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng màn hình trên thiết bị nhỏ */
+    max-width: 100%; /* Đảm bảo không có giới hạn kích thước tối đa trên thiết bị nhỏ */
+  }
+
+  .content {
+    padding: 20px; /* Giảm padding cho content khi trên thiết bị nhỏ */
   }
 }
+
 </style>
