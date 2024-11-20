@@ -66,7 +66,7 @@
                             class="btn btn-danger" @click="deleteReader">
                         Xóa
                     </button>
-                    <button type="button" class="btn btn-secondary" @click="Cancel">Thoát</button>
+                    <button type="button" class="btn btn-secondary" @click="Cancel" v-if="readerLocal._id">Thoát</button>
                 </div>
             </form>
         </div>
@@ -146,24 +146,21 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Chiều cao toàn màn hình trừ đi chiều cao navbar */
+    height: (100vh - 80px); /* Chiều cao toàn màn hình trừ đi chiều cao navbar */
     background-color: #f0f4f8;
     padding: 30px; 
     box-sizing: border-box;
     flex: 1;
-    margin-bottom: 50px;
 }
 
 .form-container {
   background-color: #fff;
   padding: 20px;
-  max-width: 600px;
+  max-width: 500px;
   margin: 20px auto;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  width: 100%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  width: 90%;
 }
 
 h2 {

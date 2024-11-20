@@ -16,7 +16,7 @@
       <p v-if="error" class="error-msg">{{ error }}</p>
       <hr style="margin-left: 100px; margin-right: 100px;">
       <i style="font-size: small;">If you haven't had the account yet, sign up 
-        <router-link :to="{ name: '' }">here!</router-link>
+        <router-link :to="{ name: 'signup' }">here!</router-link>
       </i>
     </div>
   </div>
@@ -45,7 +45,7 @@ export default {
         });
         const { token } = response;
         localStorage.setItem("token", token); // Lưu token vào localStorage
-        this.$router.push("/"); // Chuyển hướng về trang chính sau khi đăng nhập thành công
+        this.$router.push("/dashboard_docgia"); // Chuyển hướng về trang chính sau khi đăng nhập thành công
       } catch (err) {
         this.error = err.response?.data?.message || "Đăng nhập thất bại!";
       }

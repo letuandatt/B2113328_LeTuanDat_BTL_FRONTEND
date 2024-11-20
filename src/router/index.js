@@ -91,6 +91,16 @@ const routes = [
         component: () => import("@/views/TheoDoiMuonSachByBookView.vue"),
     },
     {
+        path: '/signup',
+        name: 'signup',
+        component: () => import("@/views/DocGia_SignUp.vue"),
+    },
+    {
+        path: '/dashboard_docgia',
+        name: 'dashboard_docgia',
+        component: () => import("@/views/DocGia/Dashboard.vue"),
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),

@@ -1,1 +1,3 @@
-Lát về làm bên độc giả + đổi mật khẩu cho độc giả
+Lát về làm bên độc giả + đổi mật khẩu cho độc giả + cho xem mật khẩu sau khi nhập ở input(chưa làm)
+Mượn sách: Tìm sách theo tên => Mượn
+Trả sách: Tìm độc giả theo tên => trả
