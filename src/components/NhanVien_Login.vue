@@ -9,7 +9,19 @@
         </div>
         <div class="form-group">
           <label>Mật khẩu</label>
-          <input type="password" v-model="matkhau" placeholder="Mật khẩu" required />
+          <div class="password-wrapper">
+            <input
+                :type="showPassword ? 'text' : 'password'"
+                v-model="matkhau"
+                placeholder="Mật khẩu"
+                required />
+            <button
+                type="button"
+                class="toggle-password"
+                @click="togglePasswordVisibility" >
+              <i :class="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+            </button>
+          </div>
         </div>
         <button type="submit" class="login-btn">Đăng nhập</button>
       </form>
@@ -28,6 +40,7 @@ export default {
       matkhau: "",
       role: 'nhanvien',
       error: null,
+      showPassword: false,
     };
   },
   methods: {
@@ -46,6 +59,9 @@ export default {
         this.error = err.response?.data?.message || "Đăng nhập thất bại!";
       }
     },
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    }
   },
 };
 </script>
@@ -114,5 +130,29 @@ input {
   color: red;
   margin-top: 10px;
 }
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* Chừa khoảng trống để không bị che */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px; /* Đặt nút sát lề phải */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.toggle-password i {
+  pointer-events: none;
+}
 </style>
-<!-- Mai kéo nhỏ cái footer lại -->

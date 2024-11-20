@@ -21,18 +21,36 @@
 
                 <div class="form-group" v-if="!readerLocal._id">
                     <label for="matkhau">Mật khẩu:</label>
-                    <input v-model="password"
-                            type="password" id="password" class="form-control"
+                    <div class="password-wrapper">
+                      <input v-model="password"
+                            :type="showPassword ? 'text' : 'password'" 
+                            id="password" class="form-control"
                             placeholder="Nhập mật khẩu"
                             @input="handlePasswordInput">
-                    <ErrorMessage name="matkhau" class="error-feedback" />
+                      <button
+                          type="button"
+                          class="toggle-password"
+                          @click="togglePasswordVisibility" >
+                        <i :class="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                      </button>
+                      <ErrorMessage name="matkhau" class="error-feedback" />
+                    </div>
                 </div>
 
                 <div class="form-group" v-if="showConfirmPassword">
                   <label for="confirmPassword">Nhập lại mật khẩu:</label>
-                  <input v-model="confirmPassword"
-                        type="password" id="confirmPassword" class="form-control"
+                  <div class="password-wrapper">
+                    <input v-model="confirmPassword"
+                        :type="showPassword ? 'text' : 'password'"
+                        id="confirmPassword" class="form-control"
                         placeholder="Nhập lại mật khẩu">
+                    <button
+                          type="button"
+                          class="toggle-password"
+                          @click="togglePasswordVisibility" >
+                        <i :class="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                    </button>
+                  </div>
                   <ErrorMessage name="confirmPassword" class="error-feedback" />
               </div>
 
@@ -66,7 +84,7 @@
                             class="btn btn-danger" @click="deleteReader">
                         Xóa
                     </button>
-                    <button type="button" class="btn btn-secondary" @click="Cancel" v-if="readerLocal._id">Thoát</button>
+                    <button type="button" class="btn btn-secondary" @click="Cancel" v-if="$route.path === '/dashboard/docgiaview/themdocgia'">Thoát</button>
                 </div>
             </form>
         </div>
@@ -109,7 +127,8 @@ export default {
             readerFormSchema,
             password: "",
             confirmPassword: "",
-            showConfirmPassword: false
+            showConfirmPassword: false,
+            showPassword: false,
         };
     },
     methods: {
@@ -128,6 +147,9 @@ export default {
         },
         deleteReader() {
             this.$emit('delete:reader', this.readerLocal._id);
+        },
+        togglePasswordVisibility() {
+          this.showPassword = !this.showPassword;
         },
         Cancel() {
             const reply = window.confirm('You have unsaved changes! Do you want to leave?')
@@ -251,5 +273,30 @@ button:focus {
   button {
     width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng màn hình trên thiết bị nhỏ */
   }
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* Chừa khoảng trống để không bị che */
+}
+
+.toggle-password {
+  position: absolute;
+  right: -30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.toggle-password i {
+  pointer-events: none;
 }
 </style>

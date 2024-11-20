@@ -1,7 +1,7 @@
 <template>
     <div id="app" class="app">
       <div class="home-container">
-        <button class="logout-button" @click=""><i class="fa fa-sign-out-alt"></i> Đăng xuất</button>
+        <button class="logout-button" @click="goOut"><i class="fa fa-sign-out-alt"></i> Đăng xuất</button>
         <div class="features">
             <h1>CHỌN CHỨC NĂNG MUỐN THỰC HIỆN</h1>
             <hr style="margin-left: 270px; margin-right: 270px;">
@@ -24,6 +24,19 @@
       </div>
     </div>
 </template>
+
+<script>
+export default {
+    methods: {
+        goOut() {
+            if(confirm("Bạn chắc chắn muốn thoát?")) {
+            this.$router.push({ name: 'home' });
+            }
+        }
+    }
+  
+}
+</script>
 
 <style scoped>
 .app {
