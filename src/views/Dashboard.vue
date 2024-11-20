@@ -19,7 +19,7 @@
                     <button class="role-btn book">Sách</button>
                 </router-link>
 
-                <router-link :to="{ name: '' }">
+                <router-link :to="{ name: 'docgiaview' }">
                     <button class="role-btn reader">Độc giả</button>
                 </router-link>
             </div>

@@ -59,6 +59,23 @@ const routes = [
         props: true,
     },
     {
+        path: '/dashboard/docgiaview',
+        name: 'docgiaview',
+        component: () => import("@/views/DocGiaView.vue"),
+    },
+    {
+        path: '/dashboard/docgiaview/themdocgia',
+        name: 'themdocgia',
+        component: () => import("@/views/DocGia_Add.vue"),
+        props: true,
+    },
+    {
+        path: '/dashboard/docgiaview/hieuchinhdocgia/:id',
+        name: 'hieuchinhdocgia',
+        component: () => import("@/views/DocGiaEdit.vue"),
+        props: true,
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),
