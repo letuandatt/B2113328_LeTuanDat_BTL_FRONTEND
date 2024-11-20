@@ -32,7 +32,7 @@ export default {
                 :class="{ active: activeIndex === index }">
                 <td>{{ index + 1 }}</td>
                 <td>{{ book.ten }}</td>
-                <td>{{ book.tacgia }}</td>
+                <td>{{ book.tacgia}}</td>
                 <td>{{ book.dongia }}</td>
                 <td>{{ book.soquyen }}</td>
                 <td>{{ book.namxuatban }}</td>

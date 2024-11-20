@@ -76,6 +76,21 @@ const routes = [
         props: true,
     },
     {
+        path: '/dashboard/theodoimuonsachview',
+        name: 'theodoimuonsachview',
+        component: () => import("@/views/TheoDoiMuonSachView.vue"),
+    },
+    {
+        path: '/dashboard/theodoimuonsachview/xeptheodocgia',
+        name: 'xeptheodocgia',
+        component: () => import("@/views/TheoDoiMuonSachByDocGiaView.vue"),
+    },
+    {
+        path: '/dashboard/theodoimuonsachview/xeptheosach',
+        name: 'xeptheosach',
+        component: () => import("@/views/TheoDoiMuonSachByBookView.vue"),
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),

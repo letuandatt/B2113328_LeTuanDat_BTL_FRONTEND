@@ -2,108 +2,96 @@
     <div class="dashboard-container">
         <div class="content">
             <button class="back-button" @click="goBack">Trở về</button>
-            <div class="sach-list-container">
-                <SachList v-if="filteredBooksCount > 0"
-                    :books="filteredBooks"
+            <div class="tdms-list-container">
+                <TheoDoiMuonSachList v-if="filteredTDMSCount > 0"
+                    :watchings="filteredTDMS"
                     v-model:activeIndex="activeIndex" />
-                <p v-else>Không có sách nào</p>
+                <p v-else>Không có lượt mượn sách nào</p>
             </div>
 
             <div class="feature-selection button-group">
                 <button class="feature-button refresh" @click="refreshList">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
-                <button class="feature-button add" @click="goToAddBook">
-                    <i class="fas fa-add"></i> Thêm mới
-                </button>
-                <div v-if="activeBook">
-                    <SachCard :book="activeBook" />
-                    <router-link :to="{ 
-                        name: 'hieuchinhsach', 
-                        params: { id: activeBook._id } 
-                    }">
-                    <button class="feature-button edit">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh
+                <router-link :to="{ 
+                    name: 'xeptheodocgia'
+                }">
+                    <button class="feature-button reader">
+                        <i class="fas fa-user"></i> Xem theo độc giả
                     </button>
                 </router-link>
-                </div>
-                <button class="feature-button removeall" @click="removeAll">
-                    <i class="fas fa-trash"></i> Xóa tất cả
-                </button>
+                <router-link :to="{ 
+                    name: 'xeptheosach'
+                }">
+                    <button class="feature-button book">
+                        <i class="fas fa-book"></i> Xem theo sách
+                    </button>
+                </router-link>
+                <router-link :to="{ 
+                    name: ''
+                }">
+                    <button class="feature-button available">
+                        <i class="fas fa-book"></i> Xem sách có sẵn
+                    </button>
+                </router-link>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import SachList from '@/components/SachList.vue';
-import SachService from '@/services/Sach.service';
-import SachCard from '@/components/SachCard.vue';
+import TheoDoiMuonSachCard from '@/components/TheoDoiMuonSachCard.vue';
+import TheoDoiMuonSachList from '@/components/TheoDoiMuonSachList.vue';
+import TheoDoiMuonSachService from '@/services/TheoDoiMuonSach.service';
 
 export default {
     components: {
-        SachList,
+        TheoDoiMuonSachList,
     },
     data() {
         return {
-            books: [],
+            watchings: [],
             activeIndex: -1,
-        };
+        }
     },
     computed: {
-        bookStrings() {
-            return this.books.map((book) => {
-                const { ten, tacgia, dongia, soquyen, namxuatban, nhaxuatban } = book;
-                return [ten, tacgia, dongia, soquyen, namxuatban, nhaxuatban].join("");
-            });
+        watchingsStrings() {
+            return this.watchings.map((watching) => {
+                const { docgia, sach, ngaymuon, ngaytra } = watching;
+                return [docgia, sach, ngaymuon, ngaytra].join("");
+            })
         },
-        filteredBooks() {
-            return this.books;
+        filteredTDMS() {
+            return this.watchings;
         },
-        activeBook() {
-            if (this.activeIndex < 0) return null;
-            return this.filteredBooks[this.activeIndex];
+        activeTDMS(){
+           if (this.activeIndex < 0) return null;
+           return this.filteredTDMS[this.activeIndex];
         },
-        filteredBooksCount() {
-            return this.filteredBooks.length;
+        filteredTDMSCount() {
+            return this.filteredTDMS.length;
         }
     },
     methods: {
-        async retrieveBooks() {
+        async retrieveTDMS() {
             try {
-                this.books = await SachService.getAllSach();
+                this.watchings = await TheoDoiMuonSachService.getAllTDMS();
             } catch (error) {
                 console.log(error);
             }
         },
         refreshList() {
-            this.retrieveBooks();
+            this.retrieveTDMS();
             this.activeIndex = -1;
         },
-        async removeAll() {
-            try {
-                const books = await SachService.getAllSach();
-                for(const book of books) {
-                    await SachService.deleteSach(book._id);
-                }
-                alert("Đã xóa toàn bộ sách");
-                this.refreshList();
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        goToAddBook() {
-            this.$router.push({ name: "themsach" });
-        },
         goBack() {
-            this.$router.push({ name: "dashboard" })
+            this.$router.push({ name: 'dashboard' });
         }
     },
     mounted() {
-        this.refreshList();
+      this.refreshList();
     }
 }
-
 </script>
 
 <style scoped>
@@ -198,7 +186,7 @@ export default {
   color: #7f8c8d;
 }
 
-.sach-list-container {
+.tdms-list-container {
   width: 100%;
   border-collapse: collapse;
 }
@@ -222,26 +210,31 @@ export default {
     border-radius: 20px;
     cursor: pointer;
     flex: 1;
-    min-width: 200px; /* Đặt kích thước tối thiểu cho nút */
+    min-width: 250px; /* Đặt kích thước tối thiểu cho nút */
     max-width: 300px; /* Giới hạn kích thước tối đa của mỗi nút */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
-.feature-button.refresh{
+.feature-button{
     background: linear-gradient(90deg, #fbbc05, #f29900);
     font-size: 1.1rem;
 }
 
-.feature-button.removeall{
+.feature-button.book{
     background: linear-gradient(90deg, #dc3545, #dc3545);
     font-size: 1.1rem;
 }
 
-.feature-button.edit{
+.feature-button.reader{
   background: linear-gradient(90deg, #007bff, #0056b3);
   font-size: 1.1rem;
+}
+
+.feature-button.available {
+    background: linear-gradient(90deg, #28a745, #34d058);
+    font-size: 1.1rem;
 }
 
 .feature-button:hover {
