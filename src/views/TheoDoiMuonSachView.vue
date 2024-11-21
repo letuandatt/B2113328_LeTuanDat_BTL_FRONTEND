@@ -14,9 +14,9 @@
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
                 <router-link :to="{ 
-                    name: ''
+                    name: 'checksachcosan'
                 }">
-                    <button class="feature-button available">
+                    <button class="feature-button">
                         <i class="fas fa-book"></i> Xem sách có sẵn
                     </button>
                 </router-link>
@@ -24,7 +24,7 @@
                     name: ''
                 }">
                     <button class="feature-button available" @click="removeAll">
-                        <i class="fas fa-book"></i> Xóa tất cả
+                        <i class="fas fa-remove"></i> Xóa tất cả
                     </button>
                 </router-link>
             </div>
@@ -221,7 +221,7 @@ export default {
 }
 
 .feature-button.available {
-  background: linear-gradient(90deg, #28a745, #34d058);
+  background: linear-gradient(90deg, #5f4b8b, #5f4b8b);
 }
 
 .feature-button.refresh {

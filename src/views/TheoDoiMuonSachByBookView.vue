@@ -73,7 +73,7 @@ export default {
       this.$router.push({ name: "theodoimuonsachview" });
     },
     formatDate(date) {
-      return moment(date).format('DD/MM/YYYY');
+      return moment(date).format('HH:mm:ss DD/MM/YYYY');
     }
   },
 };

@@ -13,6 +13,12 @@
                 <button class="feature-button refresh" @click="refreshList">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
+                <div v-if="activeTDMS" class="feature-selection button-group">
+                  <TheoDoiMuonSachCard :borrowing="activeTDMS"/>
+                  <button class="feature-button" @click="traSach">
+                    <i class="fas fa-arrow-circle-up"></i> Trả sách
+                  </button>
+                </div>
             </div>
         </div>
     </div>
@@ -67,6 +73,18 @@ export default {
         goBack() {
             this.$router.push({ name: "dashboard_docgia" });
         },
+        async traSach() {
+          try {
+            if (this.activeTDMS && !this.activeTDMS.ngaytra) {
+              await TheoDoiMuonSachService.traSach(this.activeTDMS._id);
+              alert("Trả sách thành công!");
+              this.refreshList();
+            }
+          } catch (error) {
+            console.log(error.message);
+            alert(`Lỗi khi trả sách: ${error.message}`);
+          }
+        }
     },
     mounted() {
       this.refreshList();

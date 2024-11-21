@@ -8,7 +8,7 @@
             <hr style="margin-left: 270px; margin-right: 270px;">
             <br>
             <div class="role-selection">
-                <router-link :to="{ name: '' }">
+                <router-link :to="{ name: 'checksachcosan' }">
                     <button class="role-btn ">Xem sách có sẵn</button>
                 </router-link>
                 <router-link :to="{ name: 'muonsach' }">

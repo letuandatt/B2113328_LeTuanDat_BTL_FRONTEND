@@ -116,6 +116,11 @@ const routes = [
         component: () => import("@/views/DocGia/History.vue"),
     },
     {
+        path: '/dashboard_docgia/checksachcosan',
+        name: 'checksachcosan',
+        component: () => import("@/views/TheoDoiMuonSachCheckAvailable.vue"),
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),

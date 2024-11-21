@@ -6,8 +6,8 @@ export default {
     },
     data() {
         return {
-            sortKey: '', // Cột hiện đang sắp xếp
-            sortAsc: true // Thứ tự sắp xếp: tăng dần (true) hoặc giảm dần (false)
+            sortKey: '', // Column currently being sorted
+            sortAsc: true // Sorting order: ascending (true) or descending (false)
         };
     },
     emits: ['update:activeIndex'],
@@ -19,7 +19,7 @@ export default {
                     let compareA = a[this.sortKey];
                     let compareB = b[this.sortKey];
                     
-                    // Xử lý nếu là số hoặc chuỗi
+                    // Handle if it's a string or number
                     if (typeof compareA === 'string') {
                         compareA = compareA.toLowerCase();
                         compareB = compareB.toLowerCase();
@@ -41,10 +41,10 @@ export default {
         },
         sortBy(key) {
             if (this.sortKey === key) {
-                this.sortAsc = !this.sortAsc; // Đảo thứ tự sắp xếp
+                this.sortAsc = !this.sortAsc; // Toggle sorting order
             } else {
                 this.sortKey = key;
-                this.sortAsc = true; // Mặc định sắp xếp tăng dần khi chọn cột mới
+                this.sortAsc = true; // Default sorting ascending when selecting a new column
             }
         }
     }
@@ -59,13 +59,6 @@ export default {
                 <th scope="col" style="text-align: center;">ID</th>
                 <th scope="col" style="text-align: center;">Tên Sách</th>
                 <th scope="col" style="text-align: center;">Tác giả</th>
-                <th scope="col" style="text-align: center; cursor: pointer;" @click="sortBy('dongia')">
-                    Đơn giá <span v-if="sortKey === 'dongia'">{{ sortAsc ? '▲' : '▼' }}</span>
-                </th>
-                <th scope="col" style="text-align: center; cursor: pointer;" @click="sortBy('namxuatban')">
-                    Năm xuất bản <span v-if="sortKey === 'namxuatban'">{{ sortAsc ? '▲' : '▼' }}</span>
-                </th>
-                <th scope="col" style="text-align: center;">Nhà xuất bản</th>
             </tr>
         </thead>
         <tbody>
@@ -75,10 +68,7 @@ export default {
                 <td>{{ index + 1 }}</td>
                 <td>{{ book._id }}</td>
                 <td>{{ book.ten }}</td>
-                <td>{{ book.tacgia}}</td>
-                <td>{{ book.dongia }}</td>
-                <td>{{ book.namxuatban }}</td>
-                <td>{{ book.nhaxuatban.ten }}</td>
+                <td>{{ book.tacgia }}</td>
             </tr>
         </tbody>
     </table>
