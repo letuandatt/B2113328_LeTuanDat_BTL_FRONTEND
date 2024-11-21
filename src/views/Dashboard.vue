@@ -32,8 +32,10 @@
 export default {
     methods: {
         goOut() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("isLoggedIn");
             if(confirm("Bạn chắc chắn muốn thoát?")) {
-            this.$router.push({ name: 'home' });
+              this.$router.push({ name: 'home' });
             }
         }
     }

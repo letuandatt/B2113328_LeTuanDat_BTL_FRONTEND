@@ -3,7 +3,7 @@
       <div class="home-container">
         <button class="logout-button" @click="goOut"><i class="fa fa-sign-out-alt"></i> Đăng xuất</button>
         <div class="features">
-            <h1>CHỌN CHỨC NĂNG MUỐN THỰC HIỆN</h1>
+            <h1 style="text-align: center;">CHỌN CHỨC NĂNG MUỐN THỰC HIỆN</h1>
             <hr style="margin-left: 270px; margin-right: 270px;">
             <br>
             <div class="role-selection">
@@ -15,9 +15,6 @@
                 </router-link>
                 <router-link :to="{ name: '' }">
                     <button class="role-btn giveback">Trả sách</button>
-                </router-link>
-                <router-link :to="{ name: '' }">
-                    <button class="role-btn reader">Độc giả</button>
                 </router-link>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
         <div class="container">
-            <a href="/" class="navbar-brand">
+            <a href="" class="navbar-brand">
                 <i class="fas fa-book-alt"></i>
                 ỨNG DỤNG QUẢN LÝ THƯ VIỆN
                 <i class="fas fa-book-reader" style="margin-left: 10px;"></i>
