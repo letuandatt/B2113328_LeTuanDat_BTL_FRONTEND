@@ -3,6 +3,7 @@
       <div class="home-container">
         <button class="logout-button" @click="goOut"><i class="fa fa-sign-out-alt"></i> Đăng xuất</button>
         <div class="features">
+            <h1>Xin chào, {{ tennv }}!</h1>
             <h1>CHỌN ĐỐI TƯỢNG MUỐN THỰC HIỆN</h1>
             <hr style="margin-left: 270px; margin-right: 270px;">
             <br>
@@ -30,14 +31,22 @@
 
 <script>
 export default {
+    data() {
+      return {
+        tennv: '',
+        showMenu: false,
+      }
+    },
     methods: {
         goOut() {
             localStorage.removeItem("token");
-            localStorage.removeItem("isLoggedIn");
             if(confirm("Bạn chắc chắn muốn thoát?")) {
               this.$router.push({ name: 'home' });
             }
-        }
+        },
+    },
+    mounted() {
+      this.tennv = localStorage.getItem("hoten_nv");
     }
   
 }
@@ -90,7 +99,7 @@ export default {
     padding: 30px;
     border-radius: 13px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    max-width: 900px; /* Tăng kích thước tối đa để khung rộng hơn */
+    max-width: 1300px; /* Tăng kích thước tối đa để khung rộng hơn */
     width: 150%; /* Mở rộng khung theo toàn bộ màn hình */
     margin: 0 10px;
 }

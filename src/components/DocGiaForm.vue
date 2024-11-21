@@ -37,6 +37,23 @@
                     </div>
                 </div>
 
+                <div class="form-group" v-if="readerLocal._id">
+                    <label for="matkhau">Đổi mật khẩu (nếu cần):</label>
+                    <div class="password-wrapper">
+                      <input v-model="password"
+                            :type="showPassword ? 'text' : 'password'" 
+                            id="password" class="form-control"
+                            placeholder="Để trống nếu không muốn thay đổi mật khẩu"
+                            @input="handlePasswordInput">
+                      <button
+                          type="button"
+                          class="toggle-password"
+                          @click="togglePasswordVisibility" >
+                        <i :class="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                      </button>
+                    </div>
+                </div>
+
                 <div class="form-group" v-if="showConfirmPassword">
                   <label for="confirmPassword">Nhập lại mật khẩu:</label>
                   <div class="password-wrapper">
@@ -142,7 +159,10 @@ export default {
               alert("Mật khẩu nhập lại không khớp");
               return;
             }
-            this.readerLocal.matkhau = this.password;
+            if (this.password) {
+                // Chỉ cập nhật mật khẩu khi có giá trị mới
+                this.readerLocal.matkhau = this.password;
+            }
             this.$emit('submit:reader', this.readerLocal);
         },
         deleteReader() {

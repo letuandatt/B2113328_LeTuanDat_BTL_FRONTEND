@@ -101,6 +101,11 @@ const routes = [
         component: () => import("@/views/DocGia/Dashboard.vue"),
     },
     {
+        path: '/dashboard_docgia/profile',
+        name: 'profile',
+        component: () => import("@/views/DocGia/DocGiaView.vue"),
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),

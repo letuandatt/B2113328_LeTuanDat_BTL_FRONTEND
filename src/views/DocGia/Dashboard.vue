@@ -3,6 +3,7 @@
       <div class="home-container">
         <button class="logout-button" @click="goOut"><i class="fa fa-sign-out-alt"></i> Đăng xuất</button>
         <div class="features">
+            <h1>Xin chào, {{ tendg }}!</h1>
             <h1 style="text-align: center;">CHỌN CHỨC NĂNG MUỐN THỰC HIỆN</h1>
             <hr style="margin-left: 270px; margin-right: 270px;">
             <br>
@@ -16,6 +17,9 @@
                 <router-link :to="{ name: '' }">
                     <button class="role-btn giveback">Trả sách</button>
                 </router-link>
+                <router-link :to="{ name: 'profile' }">
+                    <button class="role-btn profile">Xem thông tin tài khoản</button>
+                </router-link>
             </div>
         </div>
       </div>
@@ -24,12 +28,21 @@
 
 <script>
 export default {
+    data() {
+      return {
+        tendg: "",
+      }
+    },
     methods: {
         goOut() {
-            if(confirm("Bạn chắc chắn muốn thoát?")) {
+          localStorage.removeItem("token");
+          if(confirm("Bạn chắc chắn muốn thoát?")) {
             this.$router.push({ name: 'home' });
-            }
+          }
         }
+    },
+    mounted() {
+      this.tendg = localStorage.getItem("ten");
     }
   
 }
@@ -82,7 +95,7 @@ export default {
     padding: 30px;
     border-radius: 13px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    max-width: 900px; /* Tăng kích thước tối đa để khung rộng hơn */
+    max-width: 1000px; /* Tăng kích thước tối đa để khung rộng hơn */
     width: 150%; /* Mở rộng khung theo toàn bộ màn hình */
     margin: 0 10px;
 }
@@ -142,6 +155,12 @@ export default {
 .role-btn.reader {
   background: linear-gradient(90deg, #007bff, #0056b3);
   font-size: 1.1rem;
+}
+
+.role-btn.profile {
+  background: linear-gradient(90deg, #5f4b8b, #5f4b8b);
+  font-size: 1.1rem;
+  width: 240px;
 }
 
 .role-btn:hover {

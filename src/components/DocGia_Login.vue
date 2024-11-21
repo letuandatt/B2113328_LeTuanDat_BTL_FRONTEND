@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <button class="back-button" @click="goBack">Trở về</button>
     <div class="login-box">
       <h1>Đăng nhập Độc giả</h1>
       <form @submit.prevent="handleLogin">
@@ -35,6 +36,7 @@
 </template>
 
 <script>
+import { jwtDecode } from 'jwt-decode';
 import AuthService from '../services/Auth.service';
 
 export default {
@@ -56,8 +58,14 @@ export default {
           matkhau: this.matkhau,
           role: this.role,
         });
-        const { token } = response;
+        const { token, user } = response;
         localStorage.setItem("token", token); // Lưu token vào localStorage
+        localStorage.setItem("id", user._id);
+        localStorage.setItem("ten", user.hoten);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("phai", user.phai);
+        localStorage.setItem("diachi", user.diachi);
+        localStorage.setItem("dienthoai", user.dienthoai);
         this.$router.push("/dashboard_docgia"); // Chuyển hướng về trang chính sau khi đăng nhập thành công
       } catch (err) {
         this.error = err.response?.data?.message || "Đăng nhập thất bại!";
@@ -65,6 +73,9 @@ export default {
     },
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
+    },
+    goBack() {
+      this.$router.go(-1);
     }
   },
 };
@@ -74,10 +85,31 @@ export default {
 /* Tùy chỉnh CSS cho giao diện đăng nhập */
 .login-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 89vh;
   background-color: #f0f4f8;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .login-box {
@@ -143,12 +175,12 @@ input {
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 40px; /* Chừa khoảng trống để không bị che */
+  padding-right: 40px;
 }
 
 .toggle-password {
   position: absolute;
-  right: 10px; /* Đặt nút sát lề phải */
+  right: 10px;
   background: none;
   border: none;
   cursor: pointer;
@@ -159,4 +191,5 @@ input {
 .toggle-password i {
   pointer-events: none;
 }
+
 </style>
