@@ -8,10 +8,6 @@
             <hr style="margin-left: 270px; margin-right: 270px;">
             <br>
             <div class="role-selection">
-                <router-link :to="{ name: 'theodoimuonsachview' }">
-                    <button class="role-btn">Theo dõi mượn sách</button>
-                </router-link>
-
                 <router-link :to="{ name: 'nhaxuatbanview' }">
                     <button class="role-btn publisher">Nhà xuất bản</button>
                 </router-link>
@@ -23,6 +19,14 @@
                 <router-link :to="{ name: 'docgiaview' }">
                     <button class="role-btn reader">Độc giả</button>
                 </router-link>
+            </div>
+            <div class="role-selection">
+                <router-link :to="{ name: 'theodoimuonsachview' }">
+                    <button class="role-btn">Theo dõi mượn sách</button>
+                </router-link>
+                <router-link :to="{ name: 'profile_nv' }">
+                      <button class="role-btn profile">Xem thông tin tài khoản</button>
+                  </router-link>
             </div>
         </div>
       </div>
@@ -140,10 +144,11 @@ export default {
     cursor: pointer;
     flex: 1;
     min-width: 200px; /* Đặt kích thước tối thiểu cho nút */
-    max-width: 300px; /* Giới hạn kích thước tối đa của mỗi nút */
+    width: 300px; /* Giới hạn kích thước tối đa của mỗi nút */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+    margin-top: 10px;
 }
 
 .role-btn.publisher {
@@ -158,6 +163,11 @@ export default {
 
 .role-btn.reader {
   background: linear-gradient(90deg, #007bff, #0056b3);
+  font-size: 1.1rem;
+}
+
+.role-btn.profile {
+  background: linear-gradient(90deg, #5f4b8b, #5f4b8b);
   font-size: 1.1rem;
 }
 

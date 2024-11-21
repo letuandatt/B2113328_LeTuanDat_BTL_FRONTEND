@@ -55,7 +55,12 @@ export default {
         });
         const { token, user } = response;
         localStorage.setItem("token", token); // Lưu token vào localStorage
+        localStorage.setItem("id_nv", user._id);
         localStorage.setItem("hoten_nv", user.hoten);
+        localStorage.setItem("email_nv", user.email);
+        localStorage.setItem("chucvu", user.chucvu);
+        localStorage.setItem("diachi_nv", user.diachi);
+        localStorage.setItem("dienthoai_nv", user.dienthoai);
 
         this.$router.push("/dashboard"); // Chuyển hướng về trang chính sau khi đăng nhập thành công
       } catch (err) {

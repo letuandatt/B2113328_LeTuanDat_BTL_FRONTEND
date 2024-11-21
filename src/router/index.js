@@ -121,6 +121,11 @@ const routes = [
         component: () => import("@/views/TheoDoiMuonSachCheckAvailable.vue"),
     },
     {
+        path: '/dashboard/profile',
+        name: 'profile_nv',
+        component: () => import("@/views/HoSoNhanVien.vue"),
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),
