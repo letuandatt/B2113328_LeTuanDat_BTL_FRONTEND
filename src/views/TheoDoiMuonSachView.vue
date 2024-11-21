@@ -97,15 +97,17 @@ export default {
             this.$router.push({ name: 'dashboard' });
         },
         async removeAll() {
-            try {
-                const borrowings = await TheoDoiMuonSachService.getAllTDMS();
-                for (const borrowing of borrowings) {
-                    await TheoDoiMuonSachService.deleteTDMS(borrowing._id);
+            if(confirm("Bạn chắc chắn muốn xóa tất cả?")) {
+                try {
+                    const borrowings = await TheoDoiMuonSachService.getAllTDMS();
+                    for (const borrowing of borrowings) {
+                        await TheoDoiMuonSachService.deleteTDMS(borrowing._id);
+                    }
+                    alert("Đã xóa toàn bộ lượt mượn sách");
+                    this.refreshList();
+                } catch (error) {
+                    console.log(error);
                 }
-                alert("Đã xóa toàn bộ lượt mượn sách");
-                this.refreshList();
-            } catch (error) {
-                console.log(error);
             }
         }
     },

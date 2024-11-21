@@ -4,10 +4,48 @@ export default {
         books: { type: Array, default: [] },
         activeIndex: { type: Number, default: -1 }
     },
+    data() {
+        return {
+            sortKey: '', // Cột hiện đang sắp xếp
+            sortAsc: true // Thứ tự sắp xếp: tăng dần (true) hoặc giảm dần (false)
+        };
+    },
     emits: ['update:activeIndex'],
+    computed: {
+        sortedBooks() {
+            let sorted = [...this.books];
+            if (this.sortKey) {
+                sorted.sort((a, b) => {
+                    let compareA = a[this.sortKey];
+                    let compareB = b[this.sortKey];
+                    
+                    // Xử lý nếu là số hoặc chuỗi
+                    if (typeof compareA === 'string') {
+                        compareA = compareA.toLowerCase();
+                        compareB = compareB.toLowerCase();
+                    }
+                    
+                    if (this.sortAsc) {
+                        return compareA > compareB ? 1 : compareA < compareB ? -1 : 0;
+                    } else {
+                        return compareA < compareB ? 1 : compareA > compareB ? -1 : 0;
+                    }
+                });
+            }
+            return sorted;
+        }
+    },
     methods: {
         updateActiveIndex(index) {
             this.$emit('update:activeIndex', index);
+        },
+        sortBy(key) {
+            if (this.sortKey === key) {
+                this.sortAsc = !this.sortAsc; // Đảo thứ tự sắp xếp
+            } else {
+                this.sortKey = key;
+                this.sortAsc = true; // Mặc định sắp xếp tăng dần khi chọn cột mới
+            }
         }
     }
 }
@@ -20,14 +58,20 @@ export default {
                 <th scope="col" style="text-align: center;">STT</th>
                 <th scope="col" style="text-align: center;">Tên Sách</th>
                 <th scope="col" style="text-align: center;">Tác giả</th>
-                <th scope="col" style="text-align: center;">Đơn giá</th>
-                <th scope="col" style="text-align: center;">Số quyển</th>
-                <th scope="col" style="text-align: center;">Năm xuất bản</th>
+                <th scope="col" style="text-align: center; cursor: pointer;" @click="sortBy('dongia')">
+                    Đơn giá <span v-if="sortKey === 'dongia'">{{ sortAsc ? '▲' : '▼' }}</span>
+                </th>
+                <th scope="col" style="text-align: center; cursor: pointer;" @click="sortBy('soquyen')">
+                    Số quyển <span v-if="sortKey === 'soquyen'">{{ sortAsc ? '▲' : '▼' }}</span>
+                </th>
+                <th scope="col" style="text-align: center; cursor: pointer;" @click="sortBy('namxuatban')">
+                    Năm xuất bản <span v-if="sortKey === 'namxuatban'">{{ sortAsc ? '▲' : '▼' }}</span>
+                </th>
                 <th scope="col" style="text-align: center;">Nhà xuất bản</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(book, index) in books" :key="book._id" 
+            <tr v-for="(book, index) in sortedBooks" :key="book._id" 
                 @click="updateActiveIndex(index)"
                 :class="{ active: activeIndex === index }">
                 <td>{{ index + 1 }}</td>
