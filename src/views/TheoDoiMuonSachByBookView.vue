@@ -4,7 +4,7 @@
       <button class="back-button" @click="goBack">Trở về</button>
     </div>
     <h1 style="text-align: center;">DANH SÁCH MƯỢN SÁCH THEO SÁCH</h1>
-    <hr style="margin-left: 250px; margin-right: 250px"><br>
+    <hr style="margin-left: 500px; margin-right: 500px"><br>
     <div class="filter">
       <label for="sach" style="margin-right: 15px;">Chọn sách:</label>
       <input

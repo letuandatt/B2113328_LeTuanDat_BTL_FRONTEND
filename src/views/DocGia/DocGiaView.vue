@@ -2,9 +2,14 @@
   <div class="profile-container">
     <div class="profile-box">
       <h2>Thông tin tài khoản</h2>
-      <div class="form-group">
+        <div class="form-group">
           <label for="id">ID của bạn:</label>
-          <input type="text" id="id" v-model="id" required readonly/>
+          <div class="id-container">
+            <input type="text" id="id" v-model="id" required readonly />
+            <button @click="copyIdToClipboard" class="copy-btn">
+              <i class="fa fa-copy"></i>
+            </button>
+          </div>
         </div>
         <div class="form-group">
           <label for="hoten">Họ và tên:</label>
@@ -25,6 +30,13 @@
         <div class="form-group">
           <label for="dienthoai">Số điện thoại:</label>
           <input type="text" id="dienthoai" v-model="dienthoai" required readonly/>
+        </div>
+        <hr style="margin-left: 50px; margin-right: 50px;">
+        <div>
+          <i style="font-size: small;">(*) Hãy lưu trữ ID của bạn để tiện thao tác trên hệ thống!</i>
+        </div>
+        <div>
+          <i style="font-size: small;">(*) Nếu có sai sót thông tin, hãy liên hệ nhân viên!</i>
         </div>
       <button @click="goBack" class="back-btn">Quay lại</button>
     </div>
@@ -47,6 +59,12 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    copyIdToClipboard() {
+        const idInput = document.getElementById("id");
+        idInput.select(); // Chọn văn bản
+        document.execCommand("copy"); // Copy vào clipboard
+        alert("Sao chép thành công!");
     }
   },
   mounted() {
@@ -127,5 +145,25 @@ export default {
 
 .back-btn:hover {
   background-color: #e24b58;
+}
+
+.id-container {
+  display: flex;
+  align-items: center;
+}
+
+.copy-btn {
+  margin-left: 10px;
+  padding: 8px 12px;
+  background-color: #34a853;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.copy-btn:hover {
+  background-color: #0f9d58;
 }
 </style>

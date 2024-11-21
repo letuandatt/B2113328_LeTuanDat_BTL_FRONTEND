@@ -56,6 +56,7 @@ export default {
         <thead>
             <tr>
                 <th scope="col" style="text-align: center;">STT</th>
+                <th scope="col" style="text-align: center;">ID</th>
                 <th scope="col" style="text-align: center;">Tên Sách</th>
                 <th scope="col" style="text-align: center;">Tác giả</th>
                 <th scope="col" style="text-align: center; cursor: pointer;" @click="sortBy('dongia')">
@@ -75,6 +76,7 @@ export default {
                 @click="updateActiveIndex(index)"
                 :class="{ active: activeIndex === index }">
                 <td>{{ index + 1 }}</td>
+                <td>{{ book._id }}</td>
                 <td>{{ book.ten }}</td>
                 <td>{{ book.tacgia}}</td>
                 <td>{{ book.dongia }}</td>

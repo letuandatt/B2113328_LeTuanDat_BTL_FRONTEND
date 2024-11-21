@@ -9,6 +9,10 @@ export default {
 <template>
     <div>
         <div class="p-1">
+            <strong>ID:</strong>
+            {{ reader.id }}
+        </div>
+        <div class="p-1">
             <strong>Họ tên:</strong>
             {{ reader.hoten }}
         </div>

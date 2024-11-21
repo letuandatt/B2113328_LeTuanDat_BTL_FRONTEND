@@ -18,6 +18,7 @@ export default {
         <thead>
             <tr>
                 <th scope="col" style="text-align: center;">STT</th>
+                <th scope="col" style="text-align: center">ID</th>
                 <th scope="col" style="text-align: center;">Họ tên</th>
                 <th scope="col" style="text-align: center;">Email</th>
                 <th scope="col" style="text-align: center;">Phái</th>
@@ -30,6 +31,7 @@ export default {
                 @click="updateActiveIndex(index)"
                 :class="{ active: activeIndex === index }">
                 <td style="text-align: center;">{{ index + 1 }}</td>
+                <td style="text-align: center;">{{ reader._id }}</td>
                 <td style="text-align: center;">{{ reader.hoten }}</td>
                 <td style="text-align: center;">{{ reader.email }}</td>
                 <td style="text-align: center;">{{ reader.phai }}</td>

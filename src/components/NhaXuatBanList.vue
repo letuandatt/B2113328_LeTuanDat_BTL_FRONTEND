@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th scope="col" style="text-align: center;">STT</th>
+        <th scope="col" style="text-align: center;">ID</th>
         <th scope="col" style="text-align: center;">Tên Nhà xuất bản</th>
         <th scope="col" style="text-align: center;">Địa chỉ</th>
       </tr>
@@ -10,6 +11,7 @@
     <tbody>
       <tr v-for="(publisher, index) in publishers" :key="publisher._id" @click="updateActiveIndex(index)" :class="{ active: activeIndex === index }">
         <td>{{ index + 1 }}</td>
+        <td>{{ publisher._id }}</td>
         <td>{{ publisher.ten }}</td>
         <td>{{ publisher.diachi }}</td>
       </tr>
