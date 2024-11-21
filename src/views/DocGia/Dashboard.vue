@@ -11,14 +11,19 @@
                 <router-link :to="{ name: '' }">
                     <button class="role-btn ">Xem sách có sẵn</button>
                 </router-link>
-                <router-link :to="{ name: '' }">
+                <router-link :to="{ name: 'muonsach' }">
                     <button class="role-btn borrow" >Mượn sách</button>
                 </router-link>
                 <router-link :to="{ name: '' }">
                     <button class="role-btn giveback">Trả sách</button>
                 </router-link>
+            </div>
+            <div class="role-selection" style="margin-top: 15px;">
                 <router-link :to="{ name: 'profile' }">
                     <button class="role-btn profile">Xem thông tin tài khoản</button>
+                </router-link>
+                <router-link :to="{ name: 'history' }">
+                    <button class="role-btn profile">Xem lịch sử mượn sách</button>
                 </router-link>
             </div>
         </div>

@@ -13,27 +13,19 @@
                 <button class="feature-button refresh" @click="refreshList">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
-                <div v-if="activeBook">
+                <div v-if="activeBook" class="feature-selection button-group">
                     <SachCard :book="activeBook" />
-                    <router-link :to="{ 
-                        name: 'hieuchinhsach', 
-                        params: { id: activeBook._id } 
-                    }">
-                        <button class="feature-button edit">
-                            <i class="fas fa-edit"></i> Hiệu chỉnh
-                        </button>
-                    </router-link>
-                </div>
-                <button class="feature-button removeall" @click="removeAll">
-                    <i class="fas fa-trash"></i> Xóa tất cả
-                </button>
+                    <button class="feature-button edit" @click="borrowBook">
+                        <i class="fas fa-book"></i> Mượn sách
+                    </button>
+            </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import SachList from '@/components/SachList.vue';
+import SachList from '@/components/DocGia/SachList.vue';
 import SachService from '@/services/Sach.service';
 import SachCard from '@/components/SachCard.vue';
 import TheoDoiMuonSachService from '@/services/TheoDoiMuonSach.service';
@@ -78,20 +70,23 @@ export default {
             this.retrieveBooks();
             this.activeIndex = -1;
         },
-        async removeAll() {
-            try {
-                const books = await SachService.getAllSach();
-                for(const book of books) {
-                    await SachService.deleteSach(book._id);
-                }
-                alert("Đã xóa toàn bộ sách");
-                this.refreshList();
-            } catch (error) {
-                console.log(error);
-            }
-        },
         goBack() {
             this.$router.go(-1);
+        },
+        async borrowBook() {
+            try {
+                if (this.activeBook) {
+                    const docgiaId = localStorage.getItem("id");
+                    const sachId = this.activeBook._id;
+
+                    await TheoDoiMuonSachService.muonSach({ docgiaId, sachId });
+                    alert("Mượn sách thành công");
+                    this.$router.go(-1);
+                }
+            } catch (error) {
+                console.log(`Lỗi: ${error.response ? error.response.data.message : error.message}`);
+                alert(`Lỗi: ${error.response ? error.response.data.message : error.message}`);
+            }
         }
     },
     mounted() {

@@ -106,6 +106,16 @@ const routes = [
         component: () => import("@/views/DocGia/DocGiaView.vue"),
     },
     {
+        path: '/dashboard_docgia/muonsach',
+        name: 'muonsach',
+        component: () => import("@/views/DocGia/MuonSach.vue"),
+    },
+    {
+        path: '/dashboard_docgia/history',
+        name: 'history',
+        component: () => import("@/views/DocGia/History.vue"),
+    },
+    {
         path: '/:pathMatch(.*)*',
         name: 'notfound',
         component: () => import("@/views/NotFound.vue"),
