@@ -23,6 +23,7 @@ export default {
         <thead>
             <tr>
                 <th scope="col" style="text-align: center;">STT</th>
+                <th scope="col" style="text-align: center;">ID lượt mượn</th>
                 <th scope="col" style="text-align: center;">Độc giả</th>
                 <th scope="col" style="text-align: center;">Sách</th>
                 <th scope="col" style="text-align: center;">Ngày mượn</th>
@@ -34,6 +35,7 @@ export default {
                 @click="updateActiveIndex(index)"
                 :class="{ active: activeIndex === index }">
                 <td>{{ index + 1 }}</td>
+                <td>{{ watching._id }}</td>
                 <td>{{ watching.docgia?.hoten }}</td>
                 <td>{{ watching.sach?.ten }}</td>
                 <td>{{ formatDate(watching.ngaymuon) }}</td>

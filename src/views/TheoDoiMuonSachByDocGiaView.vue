@@ -16,6 +16,9 @@
         />
         <button @click="fetchByDocGia" style="margin-left: 15px;">Xem danh sách</button>
       </div>
+      <div style="margin-bottom: 10px;">
+        <strong>Kết quả mượn sách của độc giả: {{ docGiaHoTen.hoten }}</strong>
+      </div>
       <table v-if="borrowings.length > 0" class="custom-table">
         <thead>
           <tr>
@@ -42,11 +45,13 @@
 <script>
 import TheoDoiMuonSachService from '@/services/TheoDoiMuonSach.service';
 import moment from 'moment';
+import DocGiaService from '@/services/DocGia.service';
 
 export default {
   data() {
     return {
       docGiaId: "",
+      docGiaHoTen: "",
       borrowings: [],
     };
   },
@@ -60,6 +65,7 @@ export default {
         this.borrowings = await TheoDoiMuonSachService.getAllTDMSByDocGia(
           this.docGiaId
         );
+        this.docGiaHoTen = await DocGiaService.getDocGiaByID(this.docGiaId);
       } catch (error) {
         console.error("Lỗi khi tải dữ liệu:", error);
         alert("Không tìm thấy dữ liệu cho độc giả này.");

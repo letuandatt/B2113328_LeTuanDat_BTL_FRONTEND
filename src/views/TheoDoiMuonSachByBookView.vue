@@ -15,6 +15,9 @@
       />
       <button @click="fetchBySach" style="margin-left: 15px;">Xem danh sách</button>
     </div>
+    <div style="margin-bottom: 10px;">
+        <strong>Những độc giả đã mượn sách <i>{{ sach.ten }}</i> là: </strong>
+    </div>
     <table v-if="borrowings.length > 0" class="custom-table">
       <thead>
         <tr>
@@ -40,11 +43,13 @@
 <script>
 import TheoDoiMuonSachService from '@/services/TheoDoiMuonSach.service';
 import moment from 'moment';
+import SachService from '@/services/Sach.service';
 
 export default {
   data() {
     return {
       sachId: "",
+      sach: "",
       borrowings: [],
     };
   },
@@ -58,6 +63,7 @@ export default {
         this.borrowings = await TheoDoiMuonSachService.getAllTDMSBySach(
           this.sachId
         );
+        this.sach = await SachService.getSachById(this.sachId);
       } catch (error) {
         console.error("Lỗi khi tải dữ liệu:", error);
         alert("Không tìm thấy dữ liệu cho sách này.");
