@@ -88,7 +88,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 89vh;
+  height: 69vh;
   background-color: #f0f4f8;
   position: relative;
 }

@@ -82,7 +82,7 @@ export default {
       this.activeIndex = -1;
     },
     goBack() {
-      this.$router.push({ name: "theodoimuonsachview" });
+      this.$router.go(-1);
     },
     async sachCoSan() {
       if (this.activeBook) {
