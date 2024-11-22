@@ -49,7 +49,7 @@
 }
 
 .welcome-box h1 {
-  font-size: 1.5rem; /* Tăng kích thước font chữ tiêu đề */
+  font-size: 1.43rem; /* Tăng kích thước font chữ tiêu đề */
   margin-bottom: 15px;
 }
 

@@ -28,8 +28,8 @@
       </form>
       <p v-if="error" class="error-msg">{{ error }}</p>
       <hr style="margin-left: 100px; margin-right: 100px;">
-      <i style="font-size: small;">If you haven't had the account yet, sign up 
-        <router-link :to="{ name: 'signup' }">here!</router-link>
+      <i style="font-size: small;">Nếu bạn chưa có tài khoản, đăng ký ở 
+        <router-link :to="{ name: 'signup' }">đây!</router-link>
       </i>
     </div>
   </div>
