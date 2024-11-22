@@ -33,10 +33,7 @@
         </div>
         <hr style="margin-left: 50px; margin-right: 50px;">
         <div>
-          <i style="font-size: small;">(*) Hãy lưu trữ ID của bạn để tiện thao tác trên hệ thống!</i>
-        </div>
-        <div>
-          <i style="font-size: small;">(*) Nếu có sai sót thông tin, hãy liên hệ nhân viên!</i>
+          <i style="font-size: small;">(*) Nếu có sai sót thông tin, hãy liên hệ quản trị viên!</i>
         </div>
       <button @click="goBack" class="back-btn">Quay lại</button>
     </div>
