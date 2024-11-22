@@ -1,7 +1,7 @@
 <template>
     <div class="home-container">
         <div class="form-container">
-            <h2>{{ readerLocal && readerLocal._id ? `Hiệu  chỉnh` : `Thêm độc giả` }}</h2>
+            <h2>{{ readerLocal && readerLocal._id ? `Hiệu  chỉnh` : ($route.path === '/signup' ? `Đăng ký tài khoản` : `Thêm độc giả`) }}</h2>
             <form @submit.prevent="submitReader">
                 <div class="form-group">
                     <label for="hoten">Họ tên:</label>
