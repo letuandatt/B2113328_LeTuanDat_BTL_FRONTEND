@@ -2,9 +2,9 @@
     <div id="app" class="app">
       <div class="home-container">
         <div class="welcome-box">
-            <h1>Welcome to Book Management System</h1>
+            <h1>CHÀO MỪNG ĐẾN ỨNG DỤNG QUẢN LÝ THƯ VIỆN</h1>
             <hr style="margin-left: 70px; margin-right: 70px;">
-            <p>Please choose your role and log in</p>
+            <p>Vui lòng chọn vai trò và đăng nhập</p>
             <div class="role-selection">
                 <router-link :to="{ name: 'docgia_login' }">
                     <button class="role-btn">Độc giả</button>
@@ -43,7 +43,7 @@
   padding: 30px;
   border-radius: 13px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  max-width: 500px; /* Giới hạn kích thước tối đa rộng hơn */
+  max-width: 600px; /* Giới hạn kích thước tối đa rộng hơn */
   width: 100%; /* Khung mở rộng hết cỡ có thể */
   margin: 0 10px; /* Đảm bảo khoảng cách giữa khung và mép màn hình */
 }
